@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+  <body>
+    <div class="box">
+      <div class="upper">
+        <input id="display" type="text" />
+        <button id="C" onclick="ClearDisplay()">C</button>
+      </div>
+      <div>
+        <button onclick="AppendNo('9')">9</button>
+        <button onclick="AppendNo('8')">8</button>
+        <button onclick="AppendNo('7')">7</button>
+        <button onclick="subtractOne()">⌦</button>
+      </div>
+      <div>
+        <button onclick="AppendNo('6')">6</button>
+        <button onclick="AppendNo('5')">5</button>
+        <button onclick="AppendNo('4')">4</button>
+        <button onclick="AppendOperator('+')">+</button>
+      </div>
+      <div>
+        <button onclick="AppendNo('3')">3</button>
+        <button onclick="AppendNo('2')">2</button>
+        <button onclick="AppendNo('1')">1</button>
+        <button onclick="AppendOperator('-')">-</button>
+      </div>
+      <div>
+        <button onclick="AppendNo('0')">0</button>
+        <button onclick="AppendOperator('*')">x</button>
+        <button onclick="AppendOperator('/')">/</button>
+        <button onclick="Result()">=</button>
+      </div>
+    </div>
+    <script>
+      let display = document.getElementById("display");
+      let currentvalue = " ";
+
+      function AppendNo(number) {
+        currentvalue = currentvalue + number;
+        display.value = currentvalue;
+      }
+      function AppendOperator(operator) {
+        currentvalue = currentvalue + operator;
+        display.value = currentvalue;
+      }
+      function Result() {
+        try {
+          currentvalue = eval(currentvalue).toString();
+          display.value = currentvalue;
+        } catch {
+          display.value = "Error";
+          currentvalue = "";
+        }
+      }
+      function ClearDisplay() {
+        currentvalue = "";
+        display.value = currentvalue;
+      }
+      function subtractOne() {
+        currentvalue = currentvalue.substring(0, currentvalue.length- 1);
+        display.value = currentvalue;
+      }
+    </script>
+  </body>
+</html>
